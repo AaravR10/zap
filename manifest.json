@@ -1,29 +1,31 @@
 {
-    "manifest_version": 3,
-    "name": "ZAP",
-    "version": "1.0",
-    "description": "Takes a screenshot of the current tab and sends it to Gemini for analysis.",
-    "permissions": [
-      "activeTab",
-      "storage"
-    ],
-    "host_permissions": [
-       "*://*.googleapis.com/"
-    ],
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": {
-        "16": "assets/icons/icon16.png",
-        "48": "assets/icons/icon48.png",
-        "128": "assets/icons/icon128.png"
-      }
-    },
-    "background": {
-      "service_worker": "background.js"
-    },
-    "icons": {
+  "manifest_version": 3,
+  "name": "ZAP",
+  "version": "1.1",
+  "description": "Analyzes screenshots or source code of the current tab using Gemini.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+     "*://*.googleapis.com/",
+     "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
       "16": "assets/icons/icon16.png",
       "48": "assets/icons/icon48.png",
       "128": "assets/icons/icon128.png"
     }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
   }
+}
