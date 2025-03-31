@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ZAP</title>
+  <style>
+    body {
+      width: 350px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      padding: 15px;
+      background-color: #282c34;
+      color: #abb2bf;
+    }
+
+    #apiKeySection, #promptSection, #resultSection {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #e6e6e6;
+    }
+
+    input[type="password"], input[type="text"], textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 8px;
+      border: 1px solid #4a505c;
+      background-color: #3c4049;
+      color: #e0e0e0;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+     input:focus, textarea:focus {
+        border-color: #61afef;
+        outline: none;
+     }
+
+    button {
+      padding: 9px 15px;
+      cursor: pointer;
+      background-color: #61afef;
+      color: #282c34;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+      margin-right: 5px; 
+    }
+     button:last-of-type {
+        margin-right: 0; 
+     }
+    button:hover {
+      background-color: #529bce;
+    }
+     button:disabled {
+        background-color: #4a505c;
+        color: #888;
+        cursor: not-allowed;
+     }
+
+    #result {
+      margin-top: 10px;
+      padding: 12px;
+      border: 1px solid #4a505c;
+      min-height: 50px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background-color: #31353f;
+      border-radius: 4px;
+      color: #d0d0d0;
+      font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+      font-size: 0.9em;
+    }
+
+    #status {
+      font-style: italic;
+      color: #9098a3;
+      margin-top: 5px;
+      min-height: 1.2em;
+      font-size: 0.9em;
+    }
+
+    
+    #keyStatus.success, #status.success { color: #98c379; }
+    #keyStatus.error, #status.error { color: #e06c75; }
+    #keyStatus.warning, #status.warning { color: #e5c07b; }
+
+    .api-key-link {
+        font-size: 0.85em;
+        color: #61afef;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+    .api-key-link:hover {
+        text-decoration: underline;
+    }
+
+    .input-with-link {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+     .input-with-link input {
+        margin-bottom: 5px;
+        width: 100%;
+     }
+     .input-with-link a {
+         margin-left: 0;
+     }
+
+    .preset-buttons {
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    .preset-button {
+        padding: 6px 10px;
+        font-size: 0.85em;
+        background-color: #4b515c;
+        color: #c8ccd4;
+        font-weight: normal;
+    }
+    .preset-button:hover {
+        background-color: #5c6370;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="apiKeySection">
+    <label for="apiKey">Gemini API Key:</label>
+    <div class="input-with-link">
+        <input type="password" id="apiKey" placeholder="Enter your API Key">
+        <a href="https://aistudio.google.com/app/apikey" target="_blank" class="api-key-link">Generate new API key</a>
+    </div>
+    <button id="saveApiKey">Save Key</button>
+    <div id="keyStatus" style="font-size: 0.8em; margin-top: 5px;"></div>
+  </div>
+
+  <div id="promptSection">
+    <label for="prompt">Your Question/Request:</label>
+    <div class="preset-buttons">
+        <button id="presetSummarizeBtn" type="button" class="preset-button">Summarize</button>
+        <button id="presetSolveBtn" type="button" class="preset-button">Solve Problem</button>
+    </div>
+    <textarea id="prompt" rows="4" placeholder="Type your custom request here..."></textarea>
+  </div>
+
+  <button id="analyzeBtn">Analyze Page</button>
+
+  <div id="resultSection">
+     <label>Gemini's Response:</label>
+     <div id="status"></div>
+     <div id="result"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
